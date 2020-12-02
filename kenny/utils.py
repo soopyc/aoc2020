@@ -7,9 +7,9 @@ colorama.init(autoreset=True)
 def warn(value, text="WARN", end='\n\n', *args, **kwargs):
     print(
             f"{colorama.Back.YELLOW}"
-            f"{colorama.Fore.WHITE}{colorama.Style.BRIGHT} {text} "
+            f"{colorama.Fore.BLACK}{colorama.Style.BRIGHT} {text} "
             f"{colorama.Style.RESET_ALL} "
-            f"{value}", end=end
+            f"{value}", end=end,
             *args, **kwargs
     )
 
@@ -34,7 +34,7 @@ def error(value, text="ERROR", end='\n\n', *args, **kwargs):
     )
 
 
-def debug(value, text="DEBUG", end='\n\n', *args, **kwargs):
+def debug(value, text="DEBUG", end='\n', *args, **kwargs):
     print(
             f"{colorama.Back.LIGHTBLACK_EX}"
             f"{colorama.Fore.WHITE}{colorama.Style.BRIGHT} {text} "
