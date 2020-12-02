@@ -27,7 +27,7 @@ import utils
 
 utils.info('Solver for day {dirname}')
 
-helptext = f'''Usage: python3 {{sys.argv[0]} [file]
+helptext = f'''Usage: python3 {{sys.argv[0]}} [file]
 
 Required parameters:
     file: input file
