@@ -1,5 +1,6 @@
 import sys
 import os
+import stat
 
 import utils
 
@@ -25,10 +26,27 @@ import utils
 
 utils.info('Solver for day {dirname}')
 """
-
+utils.debug("templating solver.py")
 file = open(os.path.join(dirname, 'solver.py'), 'w+')
 file.write(template)
 file.close()
+
+utils.debug('creating importer')
+importer = "pbpaste > input"
+file = open(os.path.join(dirname, 'import_input'), 'w+')
+file.write(importer)
+file.close()
+utils.debug('setting importer permissions')
+os.chmod(os.path.join(dirname, 'import_input'), stat.S_IRUSR |
+            stat.S_IWUSR | 
+            stat.S_IXUSR | 
+            stat.S_IRGRP |
+            stat.S_IWGRP | 
+            stat.S_IXGRP | 
+            stat.S_IROTH | 
+            stat.S_IWOTH |
+            stat.S_IXOTH
+        )
 
 utils.success(f"Successfully created new files for day {dirname}")
 
