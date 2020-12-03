@@ -30,3 +30,26 @@ except FileNotFoundError:
     _help()
     sys.exit(1)
 
+
+utils.debug('setting up map')
+_map = puzzle.splitlines()
+
+x = 0
+trees = 0
+ok = 0
+for c, level in enumerate(_map):
+    if c == 0:
+        continue
+    x += 3 
+    location = x % len(level)
+    if level[location] == "#":
+        #tree = level[location]
+        utils.warn(level, end='\n', text="TREE")
+        trees += 1
+    else:
+        utils.success(level, end='\n', text=" OK ")
+        ok += 1
+
+print()
+utils.info(f'Traversed map \n\tTrees: {trees}\n\tOkays: {ok}', end='\n')
+
