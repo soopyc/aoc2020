@@ -1,6 +1,4 @@
 let fs = require("fs");
-const { parse } = require("path");
-const { pid } = require("process");
 
 function joinCredentials(array) {
     let newArray = [];
@@ -36,37 +34,79 @@ function checkData(data){
 
 function validData(data){
     for(const field in data){
+        //console.log(field)
         switch(field){
             case "byr":
-                if(data.byr <= 1920 || data.byr >= 2002 || data.byr.length != 4)
+                if(data.byr < 1920 || data.byr > 2002 || data.byr.length != 4){
                     return false;
+                }
+                break;
             case "iyr":
+                if(data.iyr < 2010 || data.iyr > 2020 || data.byr.length != 4){
+                    return false;
+                }
+                break;
             case "eyr":
+                if(data.eyr < 2020 || data.eyr > 2030 || data.eyr.length != 4){
+                    return false;
+                }
+                break;
             case "hgt":
+                //console.log(data.hgt)
+                if(!/[0-9]{2,3}(in|cm)/.test(data.hgt)){
+                    return false;
+                }
+                const string = data.hgt;
+                const unit = string.substring(string.length-2,string.length);
+                const value = string.slice(0, -2);
+                switch(unit){
+                    case "in":
+                        if(value < 59 || value > 76){ 
+                            console.log("test1");
+                            return false;
+                        }
+                        break;
+                    case "cm":
+                        if(value < 150 || value > 193){
+                            console.log("test");
+                            return false;
+                        }
+                        break;
+                }
+                break;
             case "hcl":
+                if(!/#[0-9a-f]{6}/.test(data.hcl)){
+                    return false;
+                }
+                break;
             case "ecl":
-                const colors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
-                if(!colors.includes(data.ecl))
+                const colors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
+                if(!colors.includes(data.ecl)){
                     return false;
+                }
+                break;
             case "pid":
-                if(data.pid.length != 9)
+                if(data.pid.length != 9){
                     return false;
-            default:
-                return true;
+                }
+                break;
         }
     }
+    return true;
 }
 
 const main = async () => {
     let file = await fs.readFileSync('./input.txt', 'utf8');
-    let array = file.split("\r\n"); // stupid windows
+    let array = file.split("\n");
     let credentials = joinCredentials(array);
     let count = 0;
     for(const credential of credentials){
-        let data = parseData(credential)
-        if(checkData(data))
-            if(validData(data))
+        let data = parseData(credential);
+        if(checkData(data)){
+            if(validData(data)){
                 count++;
+            }
+        }
     }
     console.log(count);
     console.log("done");
