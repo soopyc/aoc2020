@@ -3,4 +3,5 @@ __pycache__/
 node_modules/
  .idea/
  .vscode/
-
+package.json
+package-lock.json
