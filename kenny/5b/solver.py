@@ -100,3 +100,12 @@ ids.sort()
 
 utils.info(f'Highest ID: {ids[-1]}')
 
+utils.info('checking for missing seats...')
+
+for count, i in enumerate(ids):
+    try:
+        if i+1 != ids[count+1]:
+            utils.warn(f'Missing seat number {i+1}, current {i}', text='MISSING', end='\n')
+    except IndexError:
+        break
+
