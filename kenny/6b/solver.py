@@ -61,6 +61,10 @@ class Group:
                 if bor not in person.answers:
                     self.answers.remove(bor)
 
+            for n in self.answers:
+                if n not in person.answers:
+                    self.answers.remove(n)
+
     def __len__(self):
         return len(self.answers)
 
