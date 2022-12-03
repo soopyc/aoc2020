@@ -16,5 +16,4 @@ this repo contains the solutions from these epic people. check them out :)
 - [metalcupcake5](https://github.com/metalcupcake5) https://github.com/metalcupcake5
 - [Sushi](https://github.com/SushiPython) https://github.com/SushiPython
 - [boblovespi](https://github.com/boblovespi) https://github.com/boblovespi
-- [BigBoi98](https://github.com/BradyAtkinson) https://github.com/BradyAtkinson
-
+- castform ?
